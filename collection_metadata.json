@@ -1,0 +1,8 @@
+{
+  "name": "CanvasPick Art Collections",
+  "description": "실물 예술 자산(RWA)을 10,000조각으로 분할하여 소유할 수 있는 탈중앙화 예술품 거래 플랫폼입니다. 예술가에게는 정당한 가치를, 소액 투자자에게는 새로운 자산 소유의 기회를 제공합니다.",
+  "image": "ipfs://bafkreifgpua4vxoy6nrsnyiqvoyhzfjl25v37sag2umhqajcu56a4ybuey",
+  "external_link": "https://github.com/persistance-6/CanvasPick",
+  "seller_fee_basis_points": 500,
+  "fee_recipient": "0x5B38Da6a701c568545dCfcB03FcB875f56beddC4"
+}
