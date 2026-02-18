@@ -453,6 +453,25 @@
 					{
 						"indexed": true,
 						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "bool",
+						"name": "status",
+						"type": "bool"
+					}
+				],
+				"name": "WhitelistUpdated",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
 						"name": "owner",
 						"type": "address"
 					},
@@ -1315,11 +1334,11 @@
 			]
 		},
 		"contracts/CanvasPickAsset.sol": {
-			"keccak256": "0xab03db285c9f52a35852c85d7315682cb60025894d6258c2526409ea3d626544",
+			"keccak256": "0xc52d069588c371718c9b03fd372901c9454cd0543f5f5fda60d0bd2fe8378d57",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0a3495e59c4f25902c35c0f80fad5f32bb881c836e5de493cbc1b9c1cfa4545a",
-				"dweb:/ipfs/QmeyPbdfgsgx6xSgGvYA9oUYwRXgs8jsY8VpZbRiPtaxbG"
+				"bzz-raw://7ff2ccd63c5461f60c271dce38da3e67fa1283d49309793a1c70d3468486d113",
+				"dweb:/ipfs/QmX2xDVfYyjExD3rMJjrpHMrEMYFxEzFTNHuaLCkpnoXuH"
 			]
 		}
 	},

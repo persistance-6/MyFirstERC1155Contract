@@ -35,6 +35,7 @@ contract CanvasPickAsset is ERC1155, Ownable, ERC2981 {
     event PriceChanged(uint256 indexed id, uint256 oldPrice, uint256 newPrice);
     event Withdrawal(address indexed owner, uint256 amount);
     event RoyaltyUpdated(uint256 indexed id, address indexed receiver, uint96 feeNumerator);
+    event WhitelistUpdated(address indexed user, bool status);
 
 
     constructor(string memory _initialBaseURI) ERC1155(_initialBaseURI) Ownable(msg.sender) {}
@@ -198,6 +199,8 @@ contract CanvasPickAsset is ERC1155, Ownable, ERC2981 {
     }
     function setWhitelist(address user, bool status) external onlyOwner {
         whitelisted[user] = status;
+
+        emit WhitelistUpdated(user, status);
     }
 
     /**
