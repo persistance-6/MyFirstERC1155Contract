@@ -22,8 +22,9 @@ contract CanvasPickAsset is ERC1155, Ownable, ERC2981 {
 
     // 데이터 분석용 저장소
     mapping(uint256 => EnumerableSet.AddressSet) private _artHolders; // 작품별 홀더 명단
-    mapping(address => uint256[]) private _userOwnedIds;
-    mapping(address => mapping(uint256 => bool)) private _isAdded;
+    mapping(address => uint256[]) private _userOwnedIds;              // 유저별 보유 작품 ID 목록
+    mapping(address => mapping(uint256 => bool)) private _isAdded;    // 중복 추가 방지
+    mapping(address => mapping(uint256 => uint256)) private _userOwnedAmounts; // 유저별 작품별 보유 수량
     mapping(address => bool) public whitelisted; // 화이트 리스트
     
     // 컬렉션 전체 정보 URI (마켓플레이스용)
@@ -102,11 +103,6 @@ contract CanvasPickAsset is ERC1155, Ownable, ERC2981 {
             
             totalCost += cost;
 
-            if (!_isAdded[msg.sender][id]) {
-                _userOwnedIds[msg.sender].push(id);
-                _isAdded[msg.sender][id] = true;
-            }
-
             emit ArtBought(msg.sender, id, amount, sharePrice[id] * amount);
         }
 
@@ -144,14 +140,26 @@ contract CanvasPickAsset is ERC1155, Ownable, ERC2981 {
         
         for (uint256 i = 0; i < ids.length; i++) {
             uint256 id = ids[i];
+            uint256 amount = values[i];
             
+            // ── 받는 사람: 홀더 명단 + 소유 목록 + 수량 업데이트 ──
             if (to != address(0)) {
-                _artHolders[id].add(to); // 잔액 상관없이 일단 add (이미 있으면 무시됨)
+                _artHolders[id].add(to);
+
+                if (!_isAdded[to][id]) {
+                    _userOwnedIds[to].push(id);
+                    _isAdded[to][id] = true;
+                }
+                _userOwnedAmounts[to][id] += amount;
             }
             
-            // 보낸 사람 처리
-            if (from != address(0) && balanceOf(from, id) == 0) {
-                _artHolders[id].remove(from);
+            // ── 보내는 사람: 수량 차감 + 잔액 0이면 홀더 제거 ──
+            if (from != address(0)) {
+                _userOwnedAmounts[from][id] -= amount;
+
+                if (balanceOf(from, id) == 0) {
+                    _artHolders[id].remove(from);
+                }
             }
         }
     }
@@ -243,7 +251,7 @@ contract CanvasPickAsset is ERC1155, Ownable, ERC2981 {
         uint256[] memory currentBalances = new uint256[](ownedIds.length);
         
         for (uint256 i = 0; i < ownedIds.length; i++) {
-            currentBalances[i] = balanceOf(user, ownedIds[i]);
+            currentBalances[i] = _userOwnedAmounts[user][ownedIds[i]];
         }
         
         return (ownedIds, currentBalances);

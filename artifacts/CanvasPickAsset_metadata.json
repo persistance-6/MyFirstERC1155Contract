@@ -1334,11 +1334,11 @@
 			]
 		},
 		"contracts/CanvasPickAsset.sol": {
-			"keccak256": "0xc52d069588c371718c9b03fd372901c9454cd0543f5f5fda60d0bd2fe8378d57",
+			"keccak256": "0x7450c695f4cef28d947664ce703b529428d7fdd8fe2eb6e886ec8b2645c03e80",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://7ff2ccd63c5461f60c271dce38da3e67fa1283d49309793a1c70d3468486d113",
-				"dweb:/ipfs/QmX2xDVfYyjExD3rMJjrpHMrEMYFxEzFTNHuaLCkpnoXuH"
+				"bzz-raw://795a65590c97b91083b369abf122a3a7b931328a4d89cbc8ef77b4676fbfd956",
+				"dweb:/ipfs/Qmf2RvVZWonuXHG2yrtzARi3LFW2qNBZjtdUBT9XxB8Bba"
 			]
 		}
 	},
