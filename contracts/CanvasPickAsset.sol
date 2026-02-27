@@ -39,7 +39,9 @@ contract CanvasPickAsset is ERC1155, Ownable, ERC2981 {
     event WhitelistUpdated(address indexed user, bool status);
 
 
-    constructor(string memory _initialBaseURI) ERC1155(_initialBaseURI) Ownable(msg.sender) {}
+    constructor(string memory _initialBaseURI) ERC1155(_initialBaseURI) Ownable(msg.sender) {
+        whitelisted[msg.sender] = true; // Owner는 자동으로 화이트리스트에 추가
+    }
 
     /**
     * @dev 예술 작품 등록 (단일 및 일괄 통합)
@@ -255,6 +257,21 @@ contract CanvasPickAsset is ERC1155, Ownable, ERC2981 {
         }
         
         return (ownedIds, currentBalances);
+    }
+
+    /**
+     * @dev 등록된 모든 작품 ID를 반환합니다. (Gallery 등에서 사용)
+     * @return 1부터 (_nextArtId - 1)까지의 ID 배열
+     */
+    function getAllArtIds() external view returns (uint256[] memory) {
+        uint256 totalArts = _nextArtId - 1;
+        uint256[] memory ids = new uint256[](totalArts);
+        
+        for (uint256 i = 0; i < totalArts; i++) {
+            ids[i] = i + 1;
+        }
+        
+        return ids;
     }
 
     // ERC2981과 ERC1155가 충돌하는 인터페이스 지원 함수 (필수)

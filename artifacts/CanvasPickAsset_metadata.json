@@ -578,6 +578,19 @@
 				"type": "function"
 			},
 			{
+				"inputs": [],
+				"name": "getAllArtIds",
+				"outputs": [
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
 				"inputs": [
 					{
 						"internalType": "uint256",
@@ -1102,6 +1115,12 @@
 						"ids": "구매할 작품 ID 배열"
 					}
 				},
+				"getAllArtIds()": {
+					"details": "등록된 모든 작품 ID를 반환합니다. (Gallery 등에서 사용)",
+					"returns": {
+						"_0": "1부터 (_nextArtId - 1)까지의 ID 배열"
+					}
+				},
 				"getAllHolders(uint256)": {
 					"details": "특정 작품의 모든 홀더 명단과 잔액을 반환합니다. 정렬이나 개수 제한 없이 전체 데이터를 보내며, 가공은 프론트엔드(React)에서 수행합니다."
 				},
@@ -1334,11 +1353,11 @@
 			]
 		},
 		"contracts/CanvasPickAsset.sol": {
-			"keccak256": "0x7450c695f4cef28d947664ce703b529428d7fdd8fe2eb6e886ec8b2645c03e80",
+			"keccak256": "0xc0167ab1c5be03729142fe64b3bcb903deade020f343875eda17bfecfdca8392",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://795a65590c97b91083b369abf122a3a7b931328a4d89cbc8ef77b4676fbfd956",
-				"dweb:/ipfs/Qmf2RvVZWonuXHG2yrtzARi3LFW2qNBZjtdUBT9XxB8Bba"
+				"bzz-raw://7092e9b2f8d40103d13bb4e29c1e8c0dfd52b824b56eb59756d06148ef018be0",
+				"dweb:/ipfs/QmWrDxpu7szjrXBAwHcdWmHqLJhrxRWZNnuFZQzFwXPG7Z"
 			]
 		}
 	},
